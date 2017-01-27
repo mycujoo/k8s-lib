@@ -1,0 +1,15 @@
+{
+  "ecmaVersion": 7,
+  "libs": [],
+  "loadEagerly": [
+    "lib/*.js",
+    "index.js"
+  ],
+  "plugins": {
+    "modules": {
+      "dontLoad": "",
+      "load": "",
+      "modules": ""
+    }
+  }
+}

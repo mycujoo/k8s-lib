@@ -1,0 +1,31 @@
+{
+  "name": "mycujoo-libs",
+  "version": "1.0.0",
+  "description": "Common libraries for Mycujoo NodeJS projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/mycujootv/mycujoo-libs.git"
+  },
+  "keywords": [
+    "mycujoo",
+    "libraries",
+    "common",
+    "vault",
+    "k8s"
+  ],
+  "author": "Mycujoo",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/mycujootv/mycujoo-libs#readme",
+  "dependencies": {
+    "aws-sdk": "^2.9.0",
+    "cloudflare": "^1.1.1",
+    "joi": "^10.2.0",
+    "k8s": "^0.4.9",
+    "node-vault": "^0.5.5",
+    "querystring": "^0.2.0"
+  }
+}
