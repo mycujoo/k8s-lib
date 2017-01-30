@@ -1,4 +1,4 @@
-const vault = require('./vault')
+const vault = require('./index')
 
 /**
 * Read a secret

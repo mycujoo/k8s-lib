@@ -24,7 +24,15 @@ const getHTTPstatusCode = (url) => {
     })
 }
 
+// Simple function to output messages in a standard format
+const message = (message) => {
+    return {
+        message: message
+    }
+}
+
 module.exports = {
     getHTTPstatusCode,
-    getKubernetesToken
+    getKubernetesToken,
+    message
 }
