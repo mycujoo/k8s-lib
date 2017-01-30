@@ -349,7 +349,7 @@ module.exports = (config) => {
         return secrets
     }
 
-    module.exports = {
+    return {
         getService,
         getIngress,
         getDeployment,
