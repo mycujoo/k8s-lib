@@ -1,7 +1,7 @@
 const k8s = require('k8s')
 const fs = require('fs')
-const secrets = require('./secrets')
-const util = require('./util')
+const secrets = require('../vault/secrets')
+const util = require('../util')
 const querystring = require('querystring')
 
 module.exports = (config) => {
