@@ -27,13 +27,21 @@ module.exports = (config) => {
     const v1 = '/api/v1'
     const batch = '/apis/batch/v1'
 
-    const createJob = (namespace, name, image, command, customLabels = {}, restartPolicy = 'Never') => {
+    const createJob = (namespace, name, image, command = {}, args = [], customLabels = {}, restartPolicy = 'Never', env = {}) => {
 
         console.log('Creating batchjob', name)
 
         const labels = Object.assign({}, {
             application: `${name}`,
         }, customLabels)
+
+        const container = {
+            image: image,
+            command: command,
+            args,
+            name: name,
+            env
+        }
 
         return api(batch).post(`namespaces/${namespace}/jobs`, {
             kind: 'Job',
@@ -45,13 +53,7 @@ module.exports = (config) => {
                 template: {
                   spec: {
                     restartPolicy: "Never",
-                    containers: [
-                      {
-                        image: image,
-                        command: command,
-                        name: name
-                      }
-                    ],
+                    containers: [ container ],
                     restartPolicy: restartPolicy,
                   },
                   metadata: {
@@ -61,7 +63,6 @@ module.exports = (config) => {
                 }
             }
         })
-
     }
 
     const createNamespaceIfNotExist = async (name) => {
