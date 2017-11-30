@@ -27,7 +27,7 @@ module.exports = (config) => {
     const v1 = '/api/v1'
     const batch = '/apis/batch/v1'
 
-    const createJob = (namespace, name, image, command = {}, args = [], customLabels = {}, restartPolicy = 'Never', env = {}, specOptions = {}) => {
+    const createJob = (namespace, name, image, command = [], args = [], customLabels = {}, restartPolicy = 'Never', env = {}, specOptions = {}) => {
 
         console.log('Creating batchjob', name)
 
