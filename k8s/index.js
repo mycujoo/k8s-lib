@@ -27,7 +27,7 @@ module.exports = (config) => {
     const v1 = '/api/v1'
     const batch = '/apis/batch/v1'
 
-    const createJob = (namespace, name, image, command = {}, args = [], customLabels = {}, restartPolicy = 'Never', env = {}) => {
+    const createJob = (namespace, name, image, command = {}, args = [], customLabels = {}, restartPolicy = 'Never', env = {}, specOptions = {}) => {
 
         console.log('Creating batchjob', name)
 
@@ -43,25 +43,27 @@ module.exports = (config) => {
             env
         }
 
+        const spec = Object.assign({}, {
+            template: {
+              spec: {
+                restartPolicy: "Never",
+                containers: [ container ],
+                restartPolicy: restartPolicy,
+              },
+              metadata: {
+                labels: labels,
+                name: name
+              }
+            }
+        }, specOptions)
+
         return api(batch).post(`namespaces/${namespace}/jobs`, {
             kind: 'Job',
             apiVersion: 'batch/v1',
             metadata: {
                 name: name
             },
-            spec: {
-                template: {
-                  spec: {
-                    restartPolicy: "Never",
-                    containers: [ container ],
-                    restartPolicy: restartPolicy,
-                  },
-                  metadata: {
-                    labels: labels,
-                    name: name
-                  }
-                }
-            }
+            spec
         })
     }
 
