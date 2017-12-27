@@ -27,7 +27,7 @@ module.exports = (config) => {
     const v1 = '/api/v1'
     const batch = '/apis/batch/v1'
 
-    const createJob = (namespace, name, image, command = [], args = [], customLabels = {}, restartPolicy = 'Never', env = {}, specOptions = {}) => {
+    const createJob = (namespace, name, image, command = [], args = [], customLabels = {}, restartPolicy = 'Never', env = {}, specOptions = {}, podSpecOptions = {}) => {
 
         console.log('Creating batchjob', name)
 
@@ -56,6 +56,9 @@ module.exports = (config) => {
               }
             }
         }, specOptions)
+
+        // Add any extra podSpec options
+        spec.template.spec = Object.assign(spec.template.spec, podSpecOptions);
 
         return api(batch).post(`namespaces/${namespace}/jobs`, {
             kind: 'Job',
