@@ -58,7 +58,7 @@ module.exports = (config) => {
         }, specOptions)
 
         // Add any extra podSpec options
-        spec.template.spec = Object.assign(spec.template.spec, podSpecOptions);
+        spec.template.spec = Object.assign({}, spec.template.spec, podSpecOptions)
 
         return api(batch).post(`namespaces/${namespace}/jobs`, {
             kind: 'Job',
